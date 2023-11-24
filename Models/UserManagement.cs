@@ -9,19 +9,19 @@ namespace Api.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
        
         public int Id { get; set; }
-        [Required]
+        [Required (ErrorMessage ="User Name is Required")]
         [StringLength(50)]
         public string UserName {  get; set; }
-        [Required]
+        [Required(ErrorMessage = "First Name is Required")]
         [StringLength(50)]
         public string FirstName {  get; set; }
-        [Required]
+        [Required(ErrorMessage = "Last Name is Required")]
         [StringLength(50)]
         public String LastName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password is Required")]
         [StringLength(12)]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Mobile Number is Required")]
         public int MobileNo { get; set; }
         [Timestamp]
         public DateTime InsertDate { get; set; }

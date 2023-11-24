@@ -56,7 +56,6 @@ namespace Api.Controllers
                 return BadRequest("Username is already taken.");
             }
 
-            // Hash the password
             string passwordHash = HashPassword(registerRequest.Password);
 
             // Create a new user and add it to the database

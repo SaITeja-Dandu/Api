@@ -7,7 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\NewFarmer\**" />
+    <Compile Remove="Models\FarmerNew\**" />
+    <Content Remove="Controllers\NewFarmer\**" />
+    <Content Remove="Models\FarmerNew\**" />
+    <EmbeddedResource Remove="Controllers\NewFarmer\**" />
+    <EmbeddedResource Remove="Models\FarmerNew\**" />
+    <None Remove="Controllers\NewFarmer\**" />
+    <None Remove="Models\FarmerNew\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\RoleManagement.cs" />
+    <Compile Remove="Models\LandArea.cs" />
     <Compile Remove="Models\Role.cs" />
   </ItemGroup>
 
@@ -20,6 +32,10 @@
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Farmer\" />
   </ItemGroup>
 
 </Project>

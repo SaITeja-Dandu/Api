@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231123162539_farmer_app_02")]
+    partial class farmer_app_02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,7 +249,7 @@ namespace Api.Migrations
 
                     b.HasIndex("LandId");
 
-                    b.ToTable("F_Cultivation");
+                    b.ToTable("FCultivation");
                 });
 
             modelBuilder.Entity("Api.Models.FarmerNew.Harvest", b =>
@@ -270,7 +273,7 @@ namespace Api.Migrations
 
                     b.HasIndex("CultivationId");
 
-                    b.ToTable("F_Harvest");
+                    b.ToTable("FHarvest");
                 });
 
             modelBuilder.Entity("Api.Models.FarmerNew.Land", b =>
@@ -304,7 +307,7 @@ namespace Api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("F_Land");
+                    b.ToTable("FLand");
                 });
 
             modelBuilder.Entity("Api.Models.FarmerNew.Pesticide", b =>
@@ -329,7 +332,7 @@ namespace Api.Migrations
 
                     b.HasIndex("CultivationId");
 
-                    b.ToTable("F_Pesticide");
+                    b.ToTable("FPesticide");
                 });
 
             modelBuilder.Entity("Api.Models.FarmerNew.Reports", b =>
@@ -356,7 +359,7 @@ namespace Api.Migrations
 
                     b.HasIndex("HarvestId");
 
-                    b.ToTable("F_Reports");
+                    b.ToTable("FReports");
                 });
 
             modelBuilder.Entity("Api.Models.FarmerNew.User", b =>
@@ -385,7 +388,7 @@ namespace Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("F_User");
+                    b.ToTable("FUser");
                 });
 
             modelBuilder.Entity("Api.Models.FarmerNew.Watering", b =>
@@ -409,7 +412,7 @@ namespace Api.Migrations
 
                     b.HasIndex("CultivationId");
 
-                    b.ToTable("F_Watering");
+                    b.ToTable("FWatering");
                 });
 
             modelBuilder.Entity("Api.Models.Products", b =>

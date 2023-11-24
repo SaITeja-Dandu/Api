@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231123151250_farmer_app_01")]
+    partial class farmer_app_01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,200 +221,6 @@ namespace Api.Migrations
                     b.ToTable("Yield");
                 });
 
-            modelBuilder.Entity("Api.Models.FarmerNew.Cultivation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CultivationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LandId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("MaintenanceCost")
-                        .HasColumnType("float");
-
-                    b.Property<string>("PlantType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("SeedCost")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LandId");
-
-                    b.ToTable("F_Cultivation");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Harvest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CultivationId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("SellingCost")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Yield")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CultivationId");
-
-                    b.ToTable("F_Harvest");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Land", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CultivationType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DaysToReady")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsReadyForCultivation")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("NumberOfParts")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalArea")
-                        .HasColumnType("float");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("F_Land");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Pesticide", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CultivationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PesticideType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CultivationId");
-
-                    b.ToTable("F_Pesticide");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Reports", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("GrossProfit")
-                        .HasColumnType("float");
-
-                    b.Property<int>("HarvestId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("NetProfit")
-                        .HasColumnType("float");
-
-                    b.Property<double>("TotalCost")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HarvestId");
-
-                    b.ToTable("F_Reports");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("F_User");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Watering", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CultivationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WateringDuration")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WateringFrequency")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CultivationId");
-
-                    b.ToTable("F_Watering");
-                });
-
             modelBuilder.Entity("Api.Models.Products", b =>
                 {
                     b.Property<int>("Id")
@@ -596,72 +405,6 @@ namespace Api.Migrations
                         .IsRequired();
 
                     b.Navigation("LandPart");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Cultivation", b =>
-                {
-                    b.HasOne("Api.Models.FarmerNew.Land", "Land")
-                        .WithMany()
-                        .HasForeignKey("LandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Land");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Harvest", b =>
-                {
-                    b.HasOne("Api.Models.FarmerNew.Cultivation", "Cultivation")
-                        .WithMany()
-                        .HasForeignKey("CultivationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cultivation");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Land", b =>
-                {
-                    b.HasOne("Api.Models.FarmerNew.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Pesticide", b =>
-                {
-                    b.HasOne("Api.Models.FarmerNew.Cultivation", "Cultivation")
-                        .WithMany()
-                        .HasForeignKey("CultivationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cultivation");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Reports", b =>
-                {
-                    b.HasOne("Api.Models.FarmerNew.Harvest", "Harvest")
-                        .WithMany()
-                        .HasForeignKey("HarvestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Harvest");
-                });
-
-            modelBuilder.Entity("Api.Models.FarmerNew.Watering", b =>
-                {
-                    b.HasOne("Api.Models.FarmerNew.Cultivation", "Cultivation")
-                        .WithMany()
-                        .HasForeignKey("CultivationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cultivation");
                 });
 #pragma warning restore 612, 618
         }
